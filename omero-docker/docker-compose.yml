@@ -1,0 +1,68 @@
+version: "3"
+
+services:
+
+  database:
+    image: "postgres:11"
+    environment:
+      POSTGRES_USER: omero_db_user
+      POSTGRES_DB: omero
+      POSTGRES_PASSWORD: DB_PASSWORD
+    networks:
+        - omero
+    volumes:
+      - "database:/var/lib/postgresql/data"
+
+  omeroserver:
+    image: "test/omero-server"
+    build: "./omero_server_docker"
+    environment:
+ 
+      # Database
+      CONFIG_omero_db_host: database
+      CONFIG_omero_db_user: omero_db_user
+      CONFIG_omero_db_pass: DB_PASSWORD
+      CONFIG_omero_db_name: omero
+      ROOTPASS: ROOT_PASSWORD
+
+    networks:
+        - omero
+    ports:
+      - "4063:4063"
+      - "4064:4064"
+    volumes:
+      - "omero-data:/OMERO"
+      - "omero-server-var:/opt/omero/server/OMERO.server/var"
+      - "omero-openlink:/openlink"
+
+  omeroweb:
+    image: "test/omero-web"
+    build: "./omero_web_docker"
+    environment:
+      OMEROHOST: omeroserver
+    networks:
+        - omero
+    ports:
+      - "OMERO_WEB_PORT:OMERO_WEB_PORT"
+    volumes:
+      - "omero-web-var:/opt/omero/web/OMERO.web/var"
+      - "omero-openlink:/openlink"
+
+  webatlasapp:
+    image: "test/vitessce"
+    build: "./vitessce_docker"
+    networks:
+        - omero
+    ports:
+      - "VITESSCE_PORT:80" # 3000 unless changed
+
+networks:
+  omero:
+    driver: bridge                       
+
+volumes:
+  database:
+  omero-data-nfs:
+  omero-server-var:
+  omero-openlink:
+  omero-web-var:

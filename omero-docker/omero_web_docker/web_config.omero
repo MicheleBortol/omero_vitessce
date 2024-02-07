@@ -1,0 +1,11 @@
+# Add fpbioimage custom app to your installed web apps and add fpbioimage to
+# the Open with config, to enable open-with menu for Images in OMERO.web:
+config append omero.web.apps '"omero_fpbioimage"'
+config append omero.web.open_with '["omero_fpbioimage", "fpbioimage_index", {"script_url": "fpbioimage/openwith.js", "supported_objects": ["image"], "label": "FPBioimage"}]'
+
+# Openlink
+config append omero.web.apps '"omero_openlink"'
+config append omero.web.ui.right_plugins '["OpenLink", "omero_openlink/webclient_plugins/right_plugin.openlink.js.html", "openlink_tab"]'
+config set omero.web.openlink.dir '"/openlink"'
+config set omero.web.openlink.servername '"ADDRESS/openlink"'
+
