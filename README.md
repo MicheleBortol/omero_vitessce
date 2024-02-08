@@ -48,10 +48,27 @@ The configuration file needs to be updated with values for the following placeho
 
 ## Usage
 
-### OMERO.openlink
+### 1.) OMERO and OMERO.openlink
+1) Upload all the images in OMERO and all other necessary data (e.g. cv tables) as attachments.
+Having everything in the same Project/Dataset makes things easier, but it is not necessary.
 
+2) Generate an Openlink area with the `Create OpenLink.py` script from OMERO.web. It is easier to do it once at the Project or Dataset level
+   to include all the images and data to be viewed. It is important to select the add attachements checkbox.
 
-### Vitessce
+### 2.) Vitessce
+1) Upload to OMERO a config.json file for the viewer. See docs and examples at:
+- http://vitessce.io/docs/
+- http://vitessce.io/examples/
+In the config file use the openlink urls to point at the data.
+
+2) Recreate the openlink area so the config file is added to it. The add attachements checkbox must be selected.
+   In alternative a new openlink area can also be used.
+
+### 3.) Viewing
+Clink on the link:
+```
+https://ADDRESS/webapp/?config=https://ADDRESSS/openlink/OPENLINK_ADDRESS/config.json
+```
 
 ### Test data
 TO BE ADDED
