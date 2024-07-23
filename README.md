@@ -1,3 +1,23 @@
+# OUTDATED:
+**Please switch to:** https://github.com/MicheleBortol/omero-vitessce
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Prototype for using vitessce with OMERO
 
 ## Installation
