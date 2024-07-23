@@ -1,4 +1,4 @@
-# OUTDATED:
+# OUTDATED!!!!!!!!!!!!!!!!!!!!!!!!!!
 **Please switch to:** https://github.com/MicheleBortol/omero-vitessce
 
 
